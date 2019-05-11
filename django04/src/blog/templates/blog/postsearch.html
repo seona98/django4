@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{# objs: 검색결과를 만족하는 Post 객체 리스트 #}
+<!-- 검색기능 -->
+<form action = "{% url 'blog:postsearch' %}" method='get'>
+	{% csrf_token %}
+	<input type="text" name='search'>
+	<input type = "submit" value="검색">
+</form>
+{# objs 변수에 Post객체가 한 개라도 있으면 True #}
+{% if objs %}
+
+
+<!-- 테이블 - 게시물 출력 -->
+<table width = "90%">
+	<tr>
+		<th>글번호</th>
+		<th>카테고리</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>작성일</th>
+	</tr>
+	{% for obj in objs %}
+	<tr>
+		<th>{{obj.id}}</th>
+		<th>{{obj.c}}</th>
+		<th><a href="{% url 'blog:detail' obj.id %}">{{obj.title}}</a></th>
+		<th>{{obj.u}}</th>
+		<th>{{obj.pub_date}}</th>
+	</tr>
+	{% endfor %}
+</table>
+
+{% else %}
+	<p>검색결과가 없습니다.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{# form: SignupForm 객체, error: 사용자 입력에 따른 에러코드(문자열) #}
+<h3>회원가입</h3>
+<!-- 에러코드 출력 -->
+{% if error %}
+<p sytle="colorL red;">{{ error }}</p>
+{% endif %}
+<form action="" method="post">
+	{% csrf_token %}
+	<table border = 1>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="회원가입">
+</form>
+{% endblock %}

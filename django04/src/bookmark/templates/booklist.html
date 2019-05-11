@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+	{# list: Bookmark 객체 리스트 #}
+	{% for obj in list %}
+		<a href="{{ obj.url }}">{{ obj.name }}</a>
+		<p> obj.id: {{ obj.id }} </p>
+		<br>
+	{% endfor %}
+	<!-- 상대 주소: 같은 도에민주소에 어떤 문자열을 붙일지 입력 
+		href="/" == href="127.0.0.8000/" -->
+	<a href="/">메인 페이지로 돌아가기</a>
+{% endblock %}

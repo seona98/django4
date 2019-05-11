@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{# a: Question 객체 리스트 #}
+<h3>설문조사 메인페이지</h3>
+<ul>
+	{% for b in a %}
+		<li><a href="/vote/{{b.id}}/">{{b.name}}</a> 생성일: {{b.pub_date}}
+		<a href="{% url 'vote:qu' b.id %}">수정</a>
+		<a href="{% url 'vote:qd' b.id %}">삭제</a>
+		</li>
+	{% endfor %}
+</ul>
+<a href="{% url 'vote:qr' %}">설문조사 추가하기</a>
+<a href="{% url 'vote:cr' %}">답변항목 추가하기</a>
+{% endblock %}

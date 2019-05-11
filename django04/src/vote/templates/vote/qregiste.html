@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{# form: <input>과 <label>태그가 테이블형태로 있는 문자열 #}
+
+<h3>질문 생성</h3>
+
+<form action="" method="post">
+	{% csrf_token %}
+	<table>
+		{{ form }}
+	</table>
+	<input type="submit" value="생성">
+</form>
+
+<a href="/vote/">메인으로 돌아가기</a>
+
+{% endblock %}

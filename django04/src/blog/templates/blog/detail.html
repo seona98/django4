@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{# p: Post 객체 #}
+<h3>[ {{ p.c }} ] {{ p.title }}</h3>
+<p>{{ p.u }} / {{ p.pub_date }}</p>
+<pre>{{ p.content }}</pre>
+<!-- 첨부파일 링크 -->
+{% for f in p.postfile_set.all %}
+	{# 글에 연동된 첨부파일을 다운받을 수 있는 링크 제공 #}
+	{# 파일필드.url: 파일을 다운받을 수 있는 URL주소를 저장한 변수 #}
+	{# 파일필드.name: 실제 파일의 이름 #}
+	<a download href="{{f.f.url}}">{{f.f.name}}</a>
+	<br>
+{% endfor %}
+<!-- 첨부했던 이미지 로드 -->
+{% for f in p.postimage_set.all %}
+	{# 글에 연동된 첨부파일을 다운받을 수 있는 링크 제공 #}
+	{# 파일필드.url: 파일을 다운받을 수 있는 URL주소를 저장한 변수 #}
+	{# 파일필드.name: 실제 파일의 이름 #}
+	<img src="{{f.i.url}}" width="40%"><br>
+{% endfor %}
+<a href="{% url 'blog:index' %}">메인페이지로 돌아가기</a>
+{% endblock %}

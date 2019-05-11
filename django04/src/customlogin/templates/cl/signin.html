@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{# form: SigninForm 객체 error: 에러 발생 시 전달되는 문자열 #}
+<h3>로그인 페이지</h3>
+{% if error %}
+	<p> {{ error }} </p>
+{% endif %}
+<form action="" method="post">
+	{% csrf_token %}
+	<ul>
+	{{ form.as_ul }}
+	</ul>
+	<input type="submit" value="로그인">
+</form>
+
+<a href="/vote/">메인으로 돌아가기</a>
+<a href="{% url 'social:begin' 'google-plus' %}">구글 아이디로 로그인하기</a>
+{% endblock %}

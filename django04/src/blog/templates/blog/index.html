@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+{# objs: post 객체 리스트 , page_obj: ListView가 넘겨주는 추가 변수. 페이지 정보를 전달하는 변수#}
+<!-- 이전페이지 버튼 -->
+{% if page_obj.has_previous %}
+	{# page_obj.has_previous(): 현재페이지를 기준으로 이전페이지가 존재하는지 확인#}
+	{# page_obj.previous_page_number: 현재페이지를 기준으로 이전페이지 번호가 저장된 변수#}
+	<a href="?page={{ page_obj.previous_page_number }}">이전페이지</a>
+{% else %}
+	<a>이전페이지</a>
+{% endif %}
+<!-- 다음페이지 버튼 -->
+{% if page_obj.has_next %}
+	{# page_obj.has_next(): 현재페이지를 기준으로 다음페이지가 존재하는지 확인#}
+	{# page_obj.next_page_number: 현재페이지를 기준으로 다음페이지 번호가 저장된 변수#}
+	<a href="?page={{ page_obj.next_page_number }}">다음페이지</a>
+{% else %}
+	<a>다음페이지</a>
+{% endif %}
+<!-- 테이블 - 게시물 출력 -->
+<table width = "90%">
+	<tr>
+		<th>글번호</th>
+		<th>카테고리</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>작성일</th>
+	</tr>
+	{% for obj in objs %}
+	<tr>
+		<th>{{obj.id}}</th>
+		<th>{{obj.c}}</th>
+		<th><a href="{% url 'blog:detail' obj.id %}">{{obj.title}}</a></th>
+		<th>{{obj.u}}</th>
+		<th>{{obj.pub_date}}</th>
+	</tr>
+	{% endfor %}
+</table>
+<!-- 글쓰기 링크 -->
+<a href="{% url 'blog:posting' %}">글쓰기</a>
+<!-- 검색기능 -->
+<form action = "{% url 'blog:postsearch' %}" method='get'>
+	{% csrf_token %}
+	<input type="text" name='search'>
+	<input type = "submit" value="검색">
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

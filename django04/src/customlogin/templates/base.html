@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>장고 수업 실습 프로젝트</title>
+</head>
+<body>
+<!-- 상단바 -->
+<a href="/vote/">My Homepage</a>
+{# 템플릿에서 클라이언트의 회원정보를 user 변수로 확인할 수 있음 #}
+{# User객체.is_authenticated: 클라이언트가 로그인 되어있는지 확인하는 함수 #}
+{# 로그인 된 상태: True, 비로그인 상태: False를 반환 #}
+{% if user.is_authenticated %}
+	<p>{{ user.last_name }} {{ user.first_name}}님 환영합니다!
+	<a href="{% url 'cl:signout' %}">로그아웃</a></p>
+{% else %}
+	<p> 어서오세요! <a href="{% url 'cl:signin' %}">로그인</a>
+	<a href="{% url 'cl:signup' %}">회원가입</a></p>
+{% endif %}
+<hr>
+<!-- 컨텐츠 -->
+<!-- block tag: 해당 HTML을 다른 HTML이 확장(extends)할 때, 수정할 수 있는 영역을 지정하는 태그.
+다른 HTML이 블록을 수정하고 싶은 경우, 블록이름과 동일한 블록을 생성해 그 영역 안에 HTML코드를 작성하면 됨. -->
+{% block content %}
+{% endblock %}
+<!-- 하단바 -->
+<hr>
+<p>주소: 서울특별시 노원구</p>
+<p>전화번호: 010-1234-5678</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

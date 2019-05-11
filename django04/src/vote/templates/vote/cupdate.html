@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>항목 수정하기</h3>
+{# obj: <input>이 구성된 <p>형식의 HTML코드 문자열 #}
+<form action="" method="POST">
+	{% csrf_token %}
+	<table>
+	{{ obj }}
+	</table>
+	
+	<input type="submit" value="수정">
+</form>
+
+<a href="/vote/">메인으로 돌아가기</a>
+{% endblock %}

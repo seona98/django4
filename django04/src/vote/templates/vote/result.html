@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{# q: Question 객체 #}
+<h3>{{q.name}}의 투표 결과</h3>
+<ol>
+	{# HTML 코드에서 함수를 사용할 수 있으나, 매개변수를 입력할 수 없도록 소괄호() 생략 #}
+	{% for c in q.choice_set.all %}
+		<li>{{c.name}} - {{c.votes}}표</li>
+	{% endfor %}
+</ol>
+<a href="/vote/">메인으로 돌아가기</a>
+{% endblock %}

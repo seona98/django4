@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{# q: Question 객채, c_list: Choice 객체 리스트 #}
+
+<h3>{{q.name}}</h3>
+<form action="/vote/vote/" method="post">
+	{% csrf_token %}
+	{% for c in c_list %}
+		<input type="radio" name="vote" value="{{c.id}}">
+		<label>{{c.name}}</label>
+		<a href="{% url 'vote:cu' c.id %}">수정</a>
+		<a href="{% url 'vote:cd' c.id %}">삭제</a>
+		<br>
+	{% endfor %}
+	<input type="submit" value="투표">
+</form>
+
+{% endblock %}
